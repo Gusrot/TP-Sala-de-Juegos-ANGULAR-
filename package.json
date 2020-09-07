@@ -60,7 +60,7 @@
     "@angular-devkit/build-angular": "~0.8.0"
   },
   "engines": {
-    "node": "14.9.0",
+    "node": "10.22.0",
     "npm": "6.9.0"
   }
 }
