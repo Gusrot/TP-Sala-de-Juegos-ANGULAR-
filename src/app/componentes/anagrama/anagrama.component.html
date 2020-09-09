@@ -1,3 +1,6 @@
-<p>
-  anagrama works!
-</p>
+<button (click)="Comenzar()">Prueba</button>
+
+<input type="text" [(ngModel)]="palabraDesordenada" readonly>
+<input type="text" [(ngModel)]="comprobarPalabra">
+
+<button (click)="Comprobar(comprobarPalabra)">Comprobar</button>
