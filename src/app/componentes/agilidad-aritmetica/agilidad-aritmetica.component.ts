@@ -3,6 +3,7 @@ import { JuegoAgilidad } from '../../clases/juego-agilidad'
 
 import {Subscription} from "rxjs";
 import {TimerObservable} from "rxjs/observable/TimerObservable";
+import { exit } from 'process';
 @Component({
   selector: 'app-agilidad-aritmetica',
   templateUrl: './agilidad-aritmetica.component.html',
@@ -15,9 +16,9 @@ export class AgilidadAritmeticaComponent implements OnInit {
   ocultarVerificar: boolean;
   Tiempo: number;
   repetidor:any;
+
   private subscription: Subscription;
-  ngOnInit() {
-  }
+  
    constructor() {
      this.ocultarVerificar=true;
      this.Tiempo=5; 
@@ -25,9 +26,23 @@ export class AgilidadAritmeticaComponent implements OnInit {
     console.info("Inicio agilidad");  
   }
   NuevoJuego() {
+    let operadores = "+-*/";
+    this.nuevoJuego.primerNumero = Math.floor(Math.random() * 10) + 1;
+    this.nuevoJuego.operador = operadores[Math.floor(Math.random() * operadores.length)];
+    console.log(this.nuevoJuego.primerNumero);
+    if(this.nuevoJuego.operador != '/')
+    {
+      this.nuevoJuego.segundoNumero = Math.floor(Math.random() * 10) + 1;
+    }
+    else
+    {
+      do{
+        this.nuevoJuego.segundoNumero = Math.floor(Math.random() * 10) + 1;
+      }while(this.nuevoJuego.primerNumero < this.nuevoJuego.segundoNumero);
+    }
+
     this.ocultarVerificar=false;
-   this.repetidor = setInterval(()=>{ 
-      
+    this.repetidor = setInterval(()=>{ 
       this.Tiempo--;
       console.log("llego", this.Tiempo);
       if(this.Tiempo==0 ) {
@@ -42,10 +57,52 @@ export class AgilidadAritmeticaComponent implements OnInit {
   verificar()
   {
     this.ocultarVerificar=false;
+    let resultado;
+    switch(this.nuevoJuego.operador){
+      case '+':{
+        resultado = this.nuevoJuego.primerNumero + this.nuevoJuego.segundoNumero;
+        console.log(resultado)
+        if(resultado == this.nuevoJuego.numeroIngresado) {
+          this.nuevoJuego.gano = true;
+        } else {
+          this.nuevoJuego.gano = false;
+        }
+        break;
+      }
+      case '-':{
+        resultado = this.nuevoJuego.primerNumero - this.nuevoJuego.segundoNumero;
+        console.log(resultado)
+        if(resultado == this.nuevoJuego.numeroIngresado) {
+          this.nuevoJuego.gano = true;
+        } else {
+          this.nuevoJuego.gano = false;
+        }
+        break;
+      }
+      case '*':{
+        resultado = this.nuevoJuego.primerNumero * this.nuevoJuego.segundoNumero;
+        console.log(resultado)
+        if(resultado == this.nuevoJuego.numeroIngresado) {
+          this.nuevoJuego.gano = true;
+        } else {
+          this.nuevoJuego.gano = false;
+        }
+        break;
+      }
+      case '/':{
+        resultado = this.nuevoJuego.primerNumero / this.nuevoJuego.segundoNumero;
+        console.log(resultado)
+        if(resultado == this.nuevoJuego.numeroIngresado) {
+          this.nuevoJuego.gano = true;
+        } else {
+          this.nuevoJuego.gano = false;
+        }
+        break;
+      }
+    }
+    this.ocultarVerificar = true;
     clearInterval(this.repetidor);
-   
-
-   
-  }  
-
+  }
+  ngOnInit() {
+  } 
 }
