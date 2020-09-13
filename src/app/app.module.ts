@@ -61,12 +61,12 @@ import { MemotestComponent } from './componentes/memotest/memotest.component';
 import { TatetiComponent } from './componentes/tateti/tateti.component';
 
 const config = {
-  apiKey: "AIzaSyBdZQqwfomKDBdD4huu-Rhn06s5sQ-RSPw",
-  authDomain: "tp-saladejuegos.firebaseapp.com",
-  databaseURL: "https://tp-saladejuegos.firebaseio.com",
-  projectId: "tp-saladejuegos",
-  storageBucket: "tp-saladejuegos.appspot.com",
-  messagingSenderId: "338133003717"
+  apiKey: "AIzaSyAN9oKSbVCQCZXpLqUgENy3Y5E8-HKW3xI",
+  authDomain: "saladejuegos-39f40.firebaseapp.com",
+  databaseURL: "https://saladejuegos-39f40.firebaseio.com",
+  projectId: "saladejuegos-39f40",
+  storageBucket: "saladejuegos-39f40.appspot.com",
+  messagingSenderId: "476956640782"
 };
 
 @NgModule({

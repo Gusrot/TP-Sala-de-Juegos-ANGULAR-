@@ -54,7 +54,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from "angularfire2/auth";
 import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 import * as firebase from "firebase/app";
-//import "rxjs/add/operator/map";
+import "rxjs/add/operator/map";
 import { Jugador } from "../../clases/jugador";
 import { Juego } from '../../clases/juego';
 import { JuegoAdivina } from '../../clases/juego-adivina';
@@ -89,6 +89,7 @@ export class MiHttpService {
   {
     return new Promise( (resolve , reject) =>
       {
+        console.log('entre');
         this.afAuth.auth.createUserWithEmailAndPassword(usuario.email,usuario.pass)
         .then( userData => resolve(userData), err => reject(err));
       }    

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Jugador } from '../../clases/jugador';
-import { MiHttpService } from '../../servicios/mi-http.service';
+import { MiHttpService } from '../../servicios/mi-http/mi-http.service';
 //para poder hacer las validaciones
 //import { Validators, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 @Component({
@@ -32,6 +32,7 @@ export class RegistroComponent implements OnInit {
     }
     else
     {
+      console.log('hola');
       if(this.pass != this.pass2)
       {
         this.error("Las contraseñas no coinciden");
