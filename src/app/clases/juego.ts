@@ -18,7 +18,7 @@ export abstract class Juego {
 
   
 
-  public abstract verificar():boolean; 
+  public abstract verificar():any; 
   
   public retornarAyuda() {
     
