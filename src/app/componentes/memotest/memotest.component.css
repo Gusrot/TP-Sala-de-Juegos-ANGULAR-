@@ -1,0 +1,47 @@
+.rojoOscuro {
+    background-color: rgb(50,0,0);
+    height: 120px;
+    width: 120px;
+}
+
+.rojo {
+    background-color: rgb(255,0,0);
+    height: 120px;
+    width: 120px;
+}
+
+.verdeOscuro {
+    background-color: rgb(0,50,0);
+    height: 120px;
+    width: 120px;
+}
+
+.verde {
+    background-color: rgb(0,255,0);
+    height: 120px;
+    width: 120px;
+}
+
+.azulOscuro {
+    background-color: rgb(0,0,50);
+    height: 120px;
+    width: 120px;
+}
+
+.azul {
+    background-color: rgb(0,0,255);
+    height: 120px;
+    width: 120px;
+}
+
+.amarilloOscuro {
+    background-color: rgb(50,50,0);
+    height: 120px;
+    width: 120px;
+}
+
+.amarillo {
+    background-color: rgb(255,255,0);
+    height: 120px;
+    width: 120px;
+}

@@ -30,10 +30,10 @@
 
       <div class="container">
         <label><b>Usuario</b></label>
-        <input type="text" placeholder="Usuario"  [(ngModel)]="usuario"  name="uname" required>
+        <input type="text" placeholder="Usuario"  [(ngModel)]="email"  name="uname" required>
 
         <label><b>Clave</b></label>
-        <input type="password" placeholder="Clave"  [(ngModel)]="clave" name="psw" required>
+        <input type="password" placeholder="Clave"  [(ngModel)]="pass" name="psw" required>
             
         <button *ngIf="logeando"  (click)="MoverBarraDeProgreso()" >Ingresar</button>
        

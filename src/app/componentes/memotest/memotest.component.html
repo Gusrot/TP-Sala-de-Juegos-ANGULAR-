@@ -1,0 +1,18 @@
+<button name="rojo" (click)="Comprobar(0)" [ngClass]="{
+    'rojo': rojo,
+    'rojoOscuro': !rojo
+  }"></button>
+<button name="azul" (click)="Comprobar(1)" [ngClass]="{
+    'azul': azul,
+    'azulOscuro': !azul
+  }"></button><br>
+<button name="verde" (click)="Comprobar(2)" [ngClass]="{
+    'verde': verde,
+    'verdeOscuro': !verde
+  }"></button>
+<button name="amarillo" (click)="Comprobar(3)"[ngClass]="{
+    'amarillo': amarillo,
+    'amarilloOscuro': !amarillo
+  }"></button>
+
+  <br><button (click)="Jugar()">Jugar</button>

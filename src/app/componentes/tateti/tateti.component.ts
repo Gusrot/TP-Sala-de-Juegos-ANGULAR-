@@ -61,11 +61,47 @@ export class TatetiComponent implements OnInit {
 
   maquinamov()
   {
+    this.nuevoJuego.resultado = this.nuevoJuego.signo(this.usuario, "jugador");
+
+    if (this.nuevoJuego.resultado == "Gano" || this.nuevoJuego.resultado == "Perdio" || this.nuevoJuego.resultado == "Empate")
+    {
+      this.band = true;
+      (<HTMLInputElement>document.getElementById("botonUno")).disabled = true;
+      (<HTMLInputElement>document.getElementById("botonDos")).disabled = true;
+      (<HTMLInputElement>document.getElementById("botonTres")).disabled = true;
+      (<HTMLInputElement>document.getElementById("botonCuatro")).disabled = true;
+      (<HTMLInputElement>document.getElementById("botonCinco")).disabled = true;
+      (<HTMLInputElement>document.getElementById("botonSeis")).disabled = true;
+      (<HTMLInputElement>document.getElementById("botonSiete")).disabled = true;
+      (<HTMLInputElement>document.getElementById("botonOcho")).disabled = true;
+      (<HTMLInputElement>document.getElementById("botonNueve")).disabled = true;
+      this.terminoJuego = false;
+      /*this.servicio.getAuth().subscribe( user =>{
+        let mail = user.email;      
+        let splitted = mail.split("@",1);
+        this.nuevoJuego.usuario = splitted[0];
+      });
+      this.servicio.guardarPuntuaciónTateti(this.nuevoJuego);*/
+    }
+    else
+      this.jugar();
+  }
     
-        this.nuevoJuego.resultado = this.nuevoJuego.signo(this.usuario, "jugador");
-    
-        if (this.nuevoJuego.resultado == "Gano" || this.nuevoJuego.resultado == "Perdio" || this.nuevoJuego.resultado == "Empate")
-        {
+  jugar() 
+  {
+    this.random = Math.floor(Math.random() * 8);
+    if (this.nuevoJuego.lugares[this.random] == "-") {
+      this.nuevoJuego.lugares[this.random] = this.maquina;
+      document.images['rc' + this.random].src = "./assets/imagenes/" + this.maquina + ".gif";
+      document.images['rc' + this.random].alt = this.maquina;
+
+      this.nuevoJuego.resultado = this.nuevoJuego.signo(this.maquina, "maquina");
+
+      console.log(this.nuevoJuego.resultado);
+
+      if (this.nuevoJuego.resultado == "Gano" || this.nuevoJuego.resultado == "Perdio" || this.nuevoJuego.resultado == "Empate")
+      {
+        console.log(this.nuevoJuego.resultado);
           this.band = true;
           (<HTMLInputElement>document.getElementById("botonUno")).disabled = true;
           (<HTMLInputElement>document.getElementById("botonDos")).disabled = true;
@@ -83,50 +119,12 @@ export class TatetiComponent implements OnInit {
             this.nuevoJuego.usuario = splitted[0];
           });
           this.servicio.guardarPuntuaciónTateti(this.nuevoJuego);*/
-        }
-        else
-          this.jugar();
-    
+      }  
+    }
+    else {
+      this.jugar();
+    }
   }
-    
-      jugar() 
-      {
-        this.random = Math.floor(Math.random() * 8);
-        if (this.nuevoJuego.lugares[this.random] == "-") {
-          this.nuevoJuego.lugares[this.random] = this.maquina;
-          document.images['rc' + this.random].src = "./assets/imagenes/" + this.maquina + ".gif";
-          document.images['rc' + this.random].alt = this.maquina;
-    
-          this.nuevoJuego.resultado = this.nuevoJuego.signo(this.maquina, "maquina");
-    
-          console.log(this.nuevoJuego.resultado);
-
-          if (this.nuevoJuego.resultado == "Gano" || this.nuevoJuego.resultado == "Perdio" || this.nuevoJuego.resultado == "Empate")
-          {
-            console.log(this.nuevoJuego.resultado);
-              this.band = true;
-              (<HTMLInputElement>document.getElementById("botonUno")).disabled = true;
-              (<HTMLInputElement>document.getElementById("botonDos")).disabled = true;
-              (<HTMLInputElement>document.getElementById("botonTres")).disabled = true;
-              (<HTMLInputElement>document.getElementById("botonCuatro")).disabled = true;
-              (<HTMLInputElement>document.getElementById("botonCinco")).disabled = true;
-              (<HTMLInputElement>document.getElementById("botonSeis")).disabled = true;
-              (<HTMLInputElement>document.getElementById("botonSiete")).disabled = true;
-              (<HTMLInputElement>document.getElementById("botonOcho")).disabled = true;
-              (<HTMLInputElement>document.getElementById("botonNueve")).disabled = true;
-              this.terminoJuego = false;
-              /*this.servicio.getAuth().subscribe( user =>{
-                let mail = user.email;      
-                let splitted = mail.split("@",1);
-                this.nuevoJuego.usuario = splitted[0];
-              });
-              this.servicio.guardarPuntuaciónTateti(this.nuevoJuego);*/
-          }  
-        }
-        else {
-          this.jugar();
-        }
-      }
 
   reiniciarJuego()
   {

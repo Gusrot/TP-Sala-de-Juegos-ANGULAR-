@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-
 import {Subscription} from "rxjs";
 import {TimerObservable} from "rxjs/observable/TimerObservable";
+import { MiHttpService } from '../../servicios/mi-http/mi-http.service';
+import { Jugador } from '../../clases/jugador';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,16 +13,20 @@ import {TimerObservable} from "rxjs/observable/TimerObservable";
 export class LoginComponent implements OnInit {
 
   private subscription: Subscription;
-  usuario = '';
   clave= '';
   progreso: number;
   progresoMensaje="esperando..."; 
   logeando=true;
   ProgresoDeAncho:string;
+  email : string;
+  pass : string;
+  display: boolean = false;
+  usuario : Jugador;
+  errorMsg : string = "";
 
   clase="progress-bar progress-bar-info progress-bar-striped ";
 
-  constructor(
+  constructor(public auth : MiHttpService,
     private route: ActivatedRoute,
     private router: Router) {
       this.progreso=0;
@@ -32,8 +38,20 @@ export class LoginComponent implements OnInit {
   }
 
   Entrar() {
-    if (this.usuario === 'admin' && this.clave === 'admin') {
+    if(this.email == null || this.pass == null)
+    {
+        this.error("Complete todos los campos");
+    }
+    else
+    {
+      this.usuario = new Jugador(this.email,this.pass);
+      this.auth.logear(this.usuario)
+      .then((res) => {console.log(res),
       this.router.navigate(['/Principal']);
+        })
+      .catch((err) => {
+        this.error(err.message)
+      })
     }
   }
   MoverBarraDeProgreso() {
@@ -76,6 +94,15 @@ export class LoginComponent implements OnInit {
       }     
     });
     //this.logeando=true;
+  }
+  error(Msg : string)
+  {
+    this.errorMsg = Msg;
+    this.showDialog();
+  } 
+
+  showDialog() {
+    this.display = true;
   }
 
 }
