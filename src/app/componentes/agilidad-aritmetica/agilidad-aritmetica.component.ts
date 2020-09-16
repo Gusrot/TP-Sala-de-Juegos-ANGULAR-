@@ -4,6 +4,8 @@ import { JuegoAgilidad } from '../../clases/juego-agilidad'
 import {Subscription} from "rxjs";
 import {TimerObservable} from "rxjs/observable/TimerObservable";
 import { exit } from 'process';
+import { MiHttpService } from '../../servicios/mi-http/mi-http.service';
+
 @Component({
   selector: 'app-agilidad-aritmetica',
   templateUrl: './agilidad-aritmetica.component.html',
@@ -19,7 +21,7 @@ export class AgilidadAritmeticaComponent implements OnInit {
 
   private subscription: Subscription;
   
-   constructor() {
+   constructor(private servicio : MiHttpService) {
      this.ocultarVerificar=true;
      this.Tiempo=5; 
     this.nuevoJuego = new JuegoAgilidad();
@@ -100,6 +102,7 @@ export class AgilidadAritmeticaComponent implements OnInit {
         break;
       }
     }
+    this.servicio.guardarPuntuaciónAgilidad(this.nuevoJuego);
     this.ocultarVerificar = true;
     clearInterval(this.repetidor);
   }

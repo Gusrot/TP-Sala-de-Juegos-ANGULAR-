@@ -7,7 +7,7 @@ import { ListadoDeResultadosComponent } from './componentes/listado-de-resultado
 import { LoginComponent } from './componentes/login/login.component';
 //  import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule } from '@angular/http';
-
+//import { MatSliderModule } from '@angular/material/slider';
 // import { AccordionModule } from 'ngx-bootstrap';
 // agrego las clases para utilizar ruteo
 import { RouterModule, Routes } from '@angular/router';
@@ -59,6 +59,7 @@ import { InputJugadoresComponent } from './componentes/input-jugadores/input-jug
 import { SexoPipe } from './pipes/sexo.pipe';
 import { MemotestComponent } from './componentes/memotest/memotest.component';
 import { TatetiComponent } from './componentes/tateti/tateti.component';
+import { PiedraPapelTijeraComponent } from './componentes/piedra-papel-tijera/piedra-papel-tijera.component';
 
 const config = {
   apiKey: "AIzaSyAN9oKSbVCQCZXpLqUgENy3Y5E8-HKW3xI",
@@ -95,7 +96,8 @@ const config = {
     InputJugadoresComponent,
     SexoPipe,
     MemotestComponent,
-    TatetiComponent
+    TatetiComponent,
+    PiedraPapelTijeraComponent
   ],
   imports: [
     BrowserModule,
@@ -105,6 +107,7 @@ const config = {
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB6f8x4IjRlesQ3oETc6BXYQHVRTOlY3Ys'
     }),
+    //MatSliderModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(config)
     // NgbModule.forRoot(MiRuteo),

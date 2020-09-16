@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MiHttpService } from '../../servicios/mi-http/mi-http.service';
 import { JuegoTateti } from '../../clases/juego-tateti';
 
 @Component({
@@ -20,7 +21,7 @@ export class TatetiComponent implements OnInit {
   band : boolean;
   nombreJugador : string;
 
-  constructor(/*private servicio : MiFirebaseService*/) {
+  constructor(private servicio : MiHttpService) {
     this.terminoJuego = true;
     this.nuevoJuego = new JuegoTateti();
   }
@@ -80,8 +81,8 @@ export class TatetiComponent implements OnInit {
         let mail = user.email;      
         let splitted = mail.split("@",1);
         this.nuevoJuego.usuario = splitted[0];
-      });
-      this.servicio.guardarPuntuaciónTateti(this.nuevoJuego);*/
+      });*/
+      this.servicio.guardarPuntuaciónTateti(this.nuevoJuego);
     }
     else
       this.jugar();
@@ -117,8 +118,8 @@ export class TatetiComponent implements OnInit {
             let mail = user.email;      
             let splitted = mail.split("@",1);
             this.nuevoJuego.usuario = splitted[0];
-          });
-          this.servicio.guardarPuntuaciónTateti(this.nuevoJuego);*/
+          });*/
+          this.servicio.guardarPuntuaciónTateti(this.nuevoJuego);
       }  
     }
     else {

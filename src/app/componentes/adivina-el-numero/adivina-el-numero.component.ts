@@ -1,5 +1,6 @@
 
 import { Component, OnInit ,Input,Output,EventEmitter} from '@angular/core';
+import { MiHttpService } from '../../servicios/mi-http/mi-http.service';
 import { JuegoAdivina } from '../../clases/juego-adivina'
 
 @Component({
@@ -15,7 +16,7 @@ export class AdivinaElNumeroComponent implements OnInit {
   contador:number;
   ocultarVerificar:boolean;
  
-  constructor() { 
+  constructor(public auth : MiHttpService) { 
     this.nuevoJuego = new JuegoAdivina();
     console.info("numero Secreto:",this.nuevoJuego.numeroSecreto);  
     this.ocultarVerificar=false;
@@ -29,55 +30,64 @@ export class AdivinaElNumeroComponent implements OnInit {
     this.contador++;
     this.ocultarVerificar=true;
     console.info("numero Secreto:",this.nuevoJuego.gano);  
-    if (this.nuevoJuego.verificar()){
+    this.nuevoJuego.resultado = this.nuevoJuego.verificar();
+    console.log(this.nuevoJuego.resultado)
+    if (this.nuevoJuego.resultado == "Ganó"){
       
       this.enviarJuego.emit(this.nuevoJuego);
-      this.MostarMensaje("Sos un Genio!!!",true);
-      this.nuevoJuego.numeroSecreto=0;
-
-    }else{
-
-      let mensaje:string;
-      switch (this.contador) {
-        case 1:
-          mensaje="No, intento fallido, animo";
-          break;
-          case 2:
-          mensaje="No,Te estaras Acercando???";
-          break;
-          case 3:
-          mensaje="No es, Yo crei que la tercera era la vencida.";
-          break;
-          case 4:
-          mensaje="No era el  "+this.nuevoJuego.numeroIngresado;
-          break;
-          case 5:
-          mensaje=" intentos y nada.";
-          break;
-          case 6:
-          mensaje="Afortunado en el amor";
-          break;
-      
-        default:
+      this.MostarMensaje("Sos un Genio!!!",this.nuevoJuego.resultado);
+      this.auth.guardarPuntuacionAdivina(this.nuevoJuego);
+    }
+    else
+    {
+      if(this.nuevoJuego.resultado == "Jugando")
+      {
+        let mensaje:string;
+        switch (this.contador) {
+          case 1:
+            mensaje="No, intento fallido, animo";
+            break;
+            case 2:
+            mensaje="No,Te estaras Acercando???";
+            break;
+            case 3:
+            mensaje="No es, Yo crei que la tercera era la vencida.";
+            break;
+            case 4:
+            mensaje="No era el  "+this.nuevoJuego.numeroIngresado;
+            break;
+            case 5:
+            mensaje=" intentos y nada.";
+            break;
+            case 6:
+            mensaje="Afortunado en el amor";
+            break;
+          default:
             mensaje="Ya le erraste "+ this.contador+" veces";
-          break;
+            break;
+        }
+        this.MostarMensaje("#"+this.contador+" "+mensaje+" ayuda:"+this.nuevoJuego.retornarAyuda(),this.nuevoJuego.resultado);
       }
-      this.MostarMensaje("#"+this.contador+" "+mensaje+" ayuda :"+this.nuevoJuego.retornarAyuda());
-     
-
+      else
+      {
+        this.MostarMensaje("Se te acabaron los 10 intentos, ¡perdiste!",this.nuevoJuego.resultado);
+        this.ocultarVerificar = true;
+        this.auth.guardarPuntuacionAdivina(this.nuevoJuego);
+        (<HTMLInputElement>document.getElementById("numeroIngresado")).disabled = false;
+      }
     }
     console.info("numero Secreto:",this.nuevoJuego.gano);  
   }  
 
-  MostarMensaje(mensaje:string="este es el mensaje",ganador:boolean=false) {
+  MostarMensaje(mensaje:string="este es el mensaje",ganador:string) {
     this.Mensajes=mensaje;    
     var x = document.getElementById("snackbar");
     if(ganador)
-      {
-        x.className = "show Ganador";
-      }else{
-        x.className = "show Perdedor";
-      }
+    {
+      x.className = "show Ganador";
+    }else{
+      x.className = "show Perdedor";
+    }
     var modelo=this;
     setTimeout(function(){ 
       x.className = x.className.replace("show", "");

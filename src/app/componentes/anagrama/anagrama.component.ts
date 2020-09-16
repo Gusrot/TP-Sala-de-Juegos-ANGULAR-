@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { TimerObservable } from "rxjs/observable/TimerObservable";
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Subscription } from "rxjs";
+import { JuegoAnagrama } from '../../clases/juego-anagrama';
+import { MiHttpService } from '../../servicios/mi-http/mi-http.service';
 
 @Component({
   selector: 'app-anagrama',
@@ -7,55 +12,106 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnagramaComponent implements OnInit {
 
-  palabras:string[] = ["Hola","Casa","Cuarentena","Descapotable"];
-  palabraElegida:string;
-  palabraDesordenada:string;
-  comprobarPalabra:string;
-
-  constructor() { }
-
-  Comenzar() {
-    let random1 = Math.floor(Math.random() * this.palabras.length);
-    this.palabraElegida = this.palabras[random1];
-    let random2;
-    let randoms:number[] = [];
-    let letra1:string
-
-    this.palabraDesordenada = '';
-
-    for (let i = 0; i < this.palabraElegida.length; i++) {
-      letra1 = '';
-
-      do{
-        random2 = Math.floor(Math.random() * this.palabraElegida.length);
-      } while(randoms.includes(random2));
-
-      letra1 = this.palabraElegida[random2];
-      console.log(random2);
-      randoms.push(random2);
-
-      if (i==0) {
-        this.palabraDesordenada = letra1
-      }
-      else {
-        this.palabraDesordenada += letra1
-      }
-    }
-    console.log(this.palabraDesordenada);
+  nombreJugador : string;
+  nuevoJuego : JuegoAnagrama;
+  palabraDesordenada : string;
+  palabraIngresada : string;
+  resultado : string;
+  Tiempo : number;
+  repetidor : any;
+  esconderBotones : boolean = true;
+  tiempoUtilizado : number;
+  mostrar : boolean = true;
+  
+  constructor(private route: ActivatedRoute, private router: Router, public auth : MiHttpService) 
+  {
+    this.nuevoJuego = new JuegoAnagrama();
+    this.Tiempo = 0;
   }
 
-  Comprobar(comprobarPalabra) {
-    if(this.palabraElegida == this.comprobarPalabra.trim())
+  generarPalabra()
+  {
+    this.mostrar = false;
+    this.esconderBotones = false;
+    (<HTMLInputElement>document.getElementById("botonVerificar")).disabled = false;
+    (<HTMLInputElement>document.getElementById("botonRendirse")).disabled = false;
+    this.resultado = "";
+    (<HTMLInputElement>document.getElementById("palabraIngresada")).disabled = false;
+    (<HTMLInputElement>document.getElementById("botonVerificar")).disabled = false;
+    (<HTMLInputElement>document.getElementById("botonRendirse")).disabled = false;
+    (<HTMLInputElement>document.getElementById("botonGenerar")).disabled = true;
+    this.palabraDesordenada = this.nuevoJuego.generarPalabra();
+
+    this.repetidor = setInterval(()=>{
+      this.Tiempo++;
+    },900);
+  }
+
+  jugar()
+  {
+    if(this.palabraIngresada == "" || this.palabraIngresada == null)
     {
-      console.log('gano');
+      this.resultado = "Vacío";
     }
     else
     {
-      console.log('seguí intentando');
+      this.nuevoJuego.comenzarJuego(this.palabraIngresada);
+      this.resultado = this.nuevoJuego.verificarJuego();
+      
+      if (this.resultado == "Ganó")
+      {
+        this.mostrar = true;
+        (<HTMLInputElement>document.getElementById("botonVerificar")).disabled = true;
+        (<HTMLInputElement>document.getElementById("botonRendirse")).disabled = true;
+        this.tiempoUtilizado = this.Tiempo;
+        (<HTMLInputElement>document.getElementById("botonGenerar")).disabled = false;
+        (<HTMLInputElement>document.getElementById("palabraIngresada")).value = null;
+        clearInterval(this.repetidor);
+        this.Tiempo = 0;
+        this.esconderBotones = true;
+        this.guardar();
+      }
+      else
+      {
+        (<HTMLInputElement>document.getElementById("palabraIngresada")).value = null;
+      }
     }
   }
 
+  rendirse()
+  {
+    this.mostrar = true;
+    (<HTMLInputElement>document.getElementById("botonVerificar")).disabled = true;
+    (<HTMLInputElement>document.getElementById("botonRendirse")).disabled = true;
+    this.tiempoUtilizado = this.Tiempo;
+    (<HTMLInputElement>document.getElementById("botonGenerar")).disabled = false;
+    (<HTMLInputElement>document.getElementById("palabraIngresada")).value = null;
+    clearInterval(this.repetidor);
+    this.Tiempo = 0;
+    this.esconderBotones = true;
+    this.resultado = "Rindió";
+    this.guardar();
+  }
+
+  guardar()
+  {
+    this.nuevoJuego.usuario = this.nombreJugador;
+    console.log(this.nuevoJuego);
+    this.auth.guardarPuntuaciónAnagrama(this.nuevoJuego);
+  }
+
+  volver()
+  {
+    this.router.navigate(['/menuUsuario']);
+  }
+
   ngOnInit() {
+    this.auth.getAuth().subscribe( user =>{
+      let mail = user.email;      
+      let splitted = mail.split("@",1);
+      this.nombreJugador = splitted[0];
+    });
+    (<HTMLInputElement>document.getElementById("palabraIngresada")).disabled = true;
   }
 
 }

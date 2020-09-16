@@ -6,7 +6,7 @@ export class JuegoTateti extends Juego {
     espacio = 0;
 
     constructor(usuario?: string, nombre?: string, gano?: boolean) {
-        super("Adivina el número", gano, usuario);
+        super("Tateti", gano, usuario);
     }
 
     verificar() {
