@@ -1,3 +1,12 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div style="text-align:center">
+  <h1>
+    {{nuevoJuego.juego}}!
+  </h1>
+ </div>
+<h2></h2>
+<div class="container  animated fadeInRight" style="text-align:center;background-color: whitesmoke;margin-top: 5%">
+<form class="juego">
 <button name="rojo" (click)="Comprobar(0)" [ngClass]="{
     'rojo': rojo,
     'rojoOscuro': !rojo
@@ -15,4 +24,6 @@
     'amarilloOscuro': !amarillo
   }"></button>
 
-  <br><button (click)="Jugar()">Jugar</button>
+<br><button class="btn btn-primary" (click)="Jugar()">Jugar</button>
+</form>
+</div>
