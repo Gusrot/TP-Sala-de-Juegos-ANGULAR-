@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { JuegoMemotest } from '../../clases/juego-memotest';
+import { MiHttpService } from '../../servicios/mi-http/mi-http.service';
 
 @Component({
   selector: 'app-memotest',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MemotestComponent implements OnInit {
 
-  cantidad:number;
+  nuevoJuego:JuegoMemotest;
   numeros:number[] = [];
   intento:number = 0;
   rojo:boolean=false;
@@ -15,9 +17,11 @@ export class MemotestComponent implements OnInit {
   verde:boolean=false;
   amarillo:boolean=false;
   i:number;
+  nombreJugador:string;
 
-  constructor() { 
-    this.cantidad = 1;
+  constructor(public auth : MiHttpService) { 
+    this.nuevoJuego = new JuegoMemotest();
+    this.nuevoJuego.cantidad = 1;
   }
 
   Jugar()
@@ -26,7 +30,7 @@ export class MemotestComponent implements OnInit {
     this.i = 0;
     console.log(this.numeros.length)
     this.Encendidos(this.numeros.length)
-    this.cantidad++;
+    this.nuevoJuego.cantidad++;
   }
 
   Encendidos(total)
@@ -84,6 +88,8 @@ export class MemotestComponent implements OnInit {
     else
     {
       console.log('perdiste');
+      this.nuevoJuego.cantidad--;
+      this.guardar();
       this.Reiniciar();
     }
   }
@@ -122,7 +128,7 @@ export class MemotestComponent implements OnInit {
   Reiniciar()
   {
     this.intento = 0;
-    this.cantidad = 0;
+    this.nuevoJuego.cantidad = 0;
     this.numeros = [];
   }
 
@@ -134,7 +140,20 @@ export class MemotestComponent implements OnInit {
     this.rojo = false;
   }
 
+  guardar()
+  {
+    this.nuevoJuego.usuario = this.nombreJugador;
+    console.log(this.nuevoJuego);
+    this.auth.guardarPuntuacionMemotest(this.nuevoJuego);
+  }
+
   ngOnInit() {
+    /*this.auth.getAuth().subscribe( user =>{
+      let mail = user.email;      
+      let splitted = mail.split("@",1);
+      this.nombreJugador = splitted[0];
+    });
+    (<HTMLInputElement>document.getElementById("palabraIngresada")).disabled = true;*/
   }
 
 }

@@ -68,6 +68,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Http, Response } from '@angular/http';
+import { JuegoMemotest } from '../../clases/juego-memotest';
 
 @Injectable()
 export class MiHttpService {
@@ -174,6 +175,19 @@ export class MiHttpService {
   {
     const resultadosTateti = this.afDB.list("/resultadosTateti/");
     resultadosTateti.push(juegoTateti);
+  }
+
+  traerDatosMemotest()
+  {
+      this.respuestasAFL = this.afDB.list("/resultadoMemotest");
+      this.respuestasObservable = this.respuestasAFL.valueChanges();
+      return this.respuestasObservable;
+  }
+
+  guardarPuntuacionMemotest(juegoMemotest:JuegoMemotest)
+  {
+    const resultadosMemotest = this.afDB.list("/resultadoMemotest/");
+    resultadosMemotest.push(juegoMemotest);
   }
 
   public httpGetP ( url: string)
