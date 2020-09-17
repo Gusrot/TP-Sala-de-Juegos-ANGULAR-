@@ -1,40 +1,149 @@
 <div class="container" >
-    <div class="card">
-      <img class="img-thumbnail"   src="./assets/imagenes/cerebro.jpg" alt="Avatar" style="width:100%">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="./assets/imagenes/cerebro.jpg" alt="Avatar" style="width:100%">
+      <div class="card-body">
       <h1>Velocidad y agilidad aritmética </h1>
       <p class="title">Juego de agilidad mental</p>
-      <p>UTN FRA </p>
-  
-      <a href="#"><i class="fa fa-dribbble"></i></a> 
-      <a href="#"><i class="fa fa-twitter"></i></a> 
-      <a href="#"><i class="fa fa-linkedin"></i></a> 
-      <a href="#"><i class="fa fa-facebook"></i></a> 
-      <p>           <button class="button"  (click)="Juego('Agilidad')">Jugar</button></p>
-    
+      <p> <button class="btn btn-outline-primary"  (click)="Juego('Agilidad')">Jugar</button></p>
+    </div>
     </div>
   
-    <div class="card">
-      <img class="img-thumbnail" src="./assets/imagenes/ppt.jpg" alt="Avatar" style="width:100%">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="./assets/imagenes/ppt.jpg" alt="Avatar" style="width:100%">
+      <div class="card-body">
       <h1>Piedra Papel o Tijera</h1>
-      <p class="title">Juega contra la máquina</p>
-      <p>UTN FRA </p>
-      
-      <a href="#"><i class="fa fa-dribbble"></i></a> 
-      <a href="#"><i class="fa fa-twitter"></i></a> 
-      <a href="#"><i class="fa fa-linkedin"></i></a> 
-      <a href="#"><i class="fa fa-facebook"></i></a> 
-      <p>           <button class="button"  (click)="Juego('PPT')">Jugar</button></p>
+      <p class="title">Juega contra la máquina</p> 
+      <p><button class="btn btn-outline-primary"  (click)="Juego('Ppt')">Jugar</button></p>
+      </div>
     </div>
     <div class="card">
-      <img  class="img-thumbnail"  src="./assets/imagenes/adivina.png" alt="Avatar" style="width:100%">
+      <img  class="card-img-top"  src="./assets/imagenes/adivina.png" alt="Avatar" style="width:100%">
+      <div class="card-body">
       <h1>Adivina el número secreto</h1>
       <p class="title">Juega de estrategia</p>
-      <p>UTN FRA </p>
-      
-      <a href="#"><i class="fa fa-dribbble"></i></a> 
-      <a href="#"><i class="fa fa-twitter"></i></a> 
-      <a href="#"><i class="fa fa-linkedin"></i></a> 
-      <a href="#"><i class="fa fa-facebook"></i></a> 
-      <p>           <button class="button"  (click)="Juego('Adivina')">Jugar</button></p>
+      <p><button class="btn btn-outline-primary" (click)="Juego('Adivina')">Jugar</button></p>
+      </div>
+    </div>
+    <br>
+    <div class="card">
+      <img  class="card-img-top"  src="./assets/imagenes/adivina.png" alt="Avatar" style="width:100%">
+      <div class="card-body">
+      <h1>Adivina el número secreto</h1>
+      <p class="title">Juega de estrategia</p>
+      <p><button class="btn btn-outline-primary" (click)="Juego('Adivina')">Jugar</button></p>
+      </div>
+    </div>
+    <div class="card">
+      <img  class="card-img-top"  src="./assets/imagenes/adivina.png" alt="Avatar" style="width:100%">
+      <div class="card-body">
+      <h1>Adivina el número secreto</h1>
+      <p class="title">Juega de estrategia</p>
+      <p><button class="btn btn-outline-primary" (click)="Juego('Adivina')">Jugar</button></p>
+      </div>
+    </div>
+    <div class="card">
+      <img  class="card-img-top"  src="./assets/imagenes/adivina.png" alt="Avatar" style="width:100%">
+      <div class="card-body">
+      <h1>Adivina el número secreto</h1>
+      <p class="title">Juega de estrategia</p>
+      <p><button class="btn btn-outline-primary" (click)="Juego('Adivina')">Jugar</button></p>
+      </div>
     </div>
   </div>
+
+  <!--<p-menubar>
+    <div>
+        
+        <label class="alert alert-success"><strong>Hola de nuevo : {{nombreUsuario}}</strong>  </label>
+        <button pButton label="Estadisticas" (click)="est()" ></button>
+        <button pButton label="Logout" (click)="salir()" icon="fa-sign-out"></button>        
+    </div>
+</p-menubar>
+
+
+
+<div style="text-align: center;">
+    <div class="ui-g-4 ui-md-6 ui-sm-12 animated fadeInLeft">
+            <p-card title="Adivina el numero" [style]="{width: '100%'}" styleClass="ui-card-shadow">
+                    <p-header>
+                        <img src="Card" src="./assets/images/adivina.png" width="300px" height="300px">
+                    </p-header>
+                    <div>
+                       Intenta adivinar el numero secreto
+                    </div>
+                    <p-footer>
+                        <button mat-fab color="primary" routerLink='Adivina' >Jugar</button>
+                    </p-footer>
+                </p-card>
+                
+    </div>
+    <div class="ui-g-4 ui-md-6 ui-sm-12 animated fadeInRight">
+            <p-card title="Anagrama"  [style]="{width: '100%'}" styleClass="ui-card-shadow">
+                    <p-header>
+                        <img src="Card" src="./assets/images/anagramas.jpg" width="300px" height="300px">
+                    </p-header>
+                    <div>
+                        Resuelve el anagrama
+                    </div>
+                    <p-footer>
+                         <button mat-fab color="primary" routerLink='Anagrama'>Jugar</button>
+                    </p-footer>
+                </p-card>
+                
+    </div>
+    <div class="ui-g-4 ui-md-6 ui-sm-12 animated fadeInLeft">
+            <p-card title="Agilidad aritmetica"  [style]="{width: '100%'}" styleClass="ui-card-shadow">
+                    <p-header>
+                        <img src="Card" src="./assets/images/cerebro.jpg" width="300px" height="300px">
+                    </p-header>
+                    <div>
+                        Resuelve la mayor cantidad de operaciones 
+                    </div>
+                    <p-footer>
+                        <button mat-fab color="primary" routerLink='Agilidad' >Jugar</button>
+                    </p-footer>
+                </p-card>
+                
+    </div>
+    <div class="ui-g-4 ui-md-6 ui-sm-12  animated fadeInRight">
+            <p-card title="BlackJack"  [style]="{width: '100%'}" styleClass="ui-card-shadow">
+                    <p-header>
+                        <img src="Card" src="./assets/images/memoria.jpg" width="300px" height="300px">
+                    </p-header>
+                        Prueba tu suerte en este juego de cartas
+                    <p-footer>
+                        <button mat-fab color="primary" routerLink='BlackJack' >Jugar</button>
+                    </p-footer>
+                </p-card>
+                
+    </div>
+    <div class="ui-g-4 ui-md-6 ui-sm-12 animated fadeInLeft ">
+            <p-card title="Piedra papel tijera "  [style]="{width: '100%'}" styleClass="ui-card-shadow">
+                    <p-header>
+                        <img src="Card" src="./assets/images/ppt.jpg" width="300px" height="300px">
+                    </p-header>
+                    <div>
+                        Enfrenta a la maquina en este clasico juego
+                    </div>
+                    <p-footer>
+                            <button mat-fab color="primary" routerLink='ppt'  >Jugar</button>
+                    </p-footer>
+                </p-card>
+                
+    </div>
+    <div class="ui-g-4 ui-md-6 ui-sm-12 animated fadeInRight">
+            <p-card title="TaTeTi"  [style]="{width: '100%'}" styleClass="ui-card-shadow">
+                    <p-header>
+                        <img src="Card" src="./assets/images/tateti.jpg" width="300px" height="300px">
+                    </p-header>
+                    <div>
+                        Marca 3 en linea para ganar
+                    </div>
+                    <p-footer>
+                            <button mat-fab color="primary" routerLink='Tateti'  >Jugar</button>
+                    </p-footer>
+                </p-card>
+                
+    </div>
+    
+</div>-->
