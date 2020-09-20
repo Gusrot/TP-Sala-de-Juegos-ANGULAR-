@@ -42,15 +42,18 @@
               <div style="color:black;">Sala de juegos - Inicio</div>
           </div>
         <div class="form-group">
-          <label style="color:black;">Email: hola@gmail.com</label>
+          <label style="color:black;">Email:</label>
           <input style="color:black;" type="text" class="form-control"  [(ngModel)]="email" [ngModelOptions]="{standalone: true}" id="nombreUsuario" placeholder="Ingrese su email">
         </div>  
         <div class="form-group">
-          <label style="color:black;">Contraseña: 38467819</label>
+          <label style="color:black;">Contraseña:</label>
           <input style="color:black;" type="password" class="form-control" [(ngModel)]="pass" [ngModelOptions]="{standalone: true}" id="passwordUsuario" placeholder="Ingrese su contraseña">
         </div>
         <button type="button" (click)="Entrar()" class="btn btn-success btn-block">
             Iniciar sesión</button>
+        <br>
+        <button type="button" (click)="Rapido()" class="btn btn-success btn-block">
+          Iniciar rápido</button>
         <br>
       <div class="form-group">
           <button type="button" class="btn btn-primary" routerLink="/Registrar">Crear mi cuenta</button>            

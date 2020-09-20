@@ -60,6 +60,7 @@ import { SexoPipe } from './pipes/sexo.pipe';
 import { MemotestComponent } from './componentes/memotest/memotest.component';
 import { TatetiComponent } from './componentes/tateti/tateti.component';
 import { PiedraPapelTijeraComponent } from './componentes/piedra-papel-tijera/piedra-papel-tijera.component';
+import { OrdenarNumerosComponent } from './componentes/ordenar-numeros/ordenar-numeros.component';
 
 const config = {
   apiKey: "AIzaSyAN9oKSbVCQCZXpLqUgENy3Y5E8-HKW3xI",
@@ -97,7 +98,8 @@ const config = {
     SexoPipe,
     MemotestComponent,
     TatetiComponent,
-    PiedraPapelTijeraComponent
+    PiedraPapelTijeraComponent,
+    OrdenarNumerosComponent
   ],
   imports: [
     BrowserModule,

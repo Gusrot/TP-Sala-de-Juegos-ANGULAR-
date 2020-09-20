@@ -1,0 +1,7 @@
+<button [disabled]="clicked1" (click)="click(nuevoJuego.numeroUno); clicked1 = true;">{{nuevoJuego.numeroUno}}</button>
+<button [disabled]="clicked2" (click)="click(nuevoJuego.numeroDos); clicked2 = true;" >{{nuevoJuego.numeroDos}}</button>
+<button [disabled]="clicked3" (click)="click(nuevoJuego.numeroTres); clicked3 = true;">{{nuevoJuego.numeroTres}}</button>
+<button [disabled]="clicked4" (click)="click(nuevoJuego.numeroCuatro); clicked4 = true;">{{nuevoJuego.numeroCuatro}}</button>
+<br>
+<br>
+<button (click)="iniciar(); clicked1 = false; clicked2 = false; clicked3 = false; clicked4 = false">Iniciar</button>

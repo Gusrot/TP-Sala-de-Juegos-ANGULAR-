@@ -95,6 +95,12 @@ export class LoginComponent implements OnInit {
     });
     //this.logeando=true;
   }
+
+  Rapido()
+  {
+    this.email = "hola@gmail.com";
+    this.pass = "38467819";
+  }
   error(Msg : string)
   {
     this.errorMsg = Msg;
