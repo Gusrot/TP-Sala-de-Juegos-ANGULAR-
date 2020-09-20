@@ -15,6 +15,10 @@ export class OrdenarNumerosComponent implements OnInit {
   ocultarVerificar: boolean;
   Tiempo: number;
   repetidor:any;
+  clicked1:boolean;
+  clicked2:boolean;
+  clicked3:boolean;
+  clicked4:boolean;
 
   constructor() { 
     this.nuevoJuego = new JuegoOrdenarNumeros();
