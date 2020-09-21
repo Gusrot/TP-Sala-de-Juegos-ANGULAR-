@@ -69,6 +69,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Http, Response } from '@angular/http';
 import { JuegoMemotest } from '../../clases/juego-memotest';
+import { JuegoOrdenarNumeros } from '../../clases/juego-ordenar-numeros';
 
 @Injectable()
 export class MiHttpService {
@@ -188,6 +189,19 @@ export class MiHttpService {
   {
     const resultadosMemotest = this.afDB.list("/resultadoMemotest/");
     resultadosMemotest.push(juegoMemotest);
+  }
+
+  traerDatosOrdenar()
+  {
+      this.respuestasAFL = this.afDB.list("/resultadoOrdenar");
+      this.respuestasObservable = this.respuestasAFL.valueChanges();
+      return this.respuestasObservable;
+  }
+
+  guardarPuntuacionOrdenar(juegoOrdenar:JuegoOrdenarNumeros)
+  {
+    const resultadosMemotest = this.afDB.list("/resultadoOrdenar/");
+    resultadosMemotest.push(juegoOrdenar);
   }
 
   public httpGetP ( url: string)

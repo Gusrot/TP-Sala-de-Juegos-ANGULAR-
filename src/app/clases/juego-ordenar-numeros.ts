@@ -15,7 +15,7 @@ export class JuegoOrdenarNumeros extends Juego{
     verOrden(orden)
     {
         for (let i = 1; i < orden.length; i++) {
-            if(orden[i] > orden[i-1]){}
+            if(orden[i] >= orden[i-1]){}
             else
             {
                 return 'Perdió';

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MiHttpService } from '../../servicios/mi-http/mi-http.service';
 import { JuegoOrdenarNumeros } from '../../clases/juego-ordenar-numeros';
 
 @Component({
@@ -10,7 +11,7 @@ export class OrdenarNumerosComponent implements OnInit {
 
   nuevoJuego:JuegoOrdenarNumeros;
   orden:number[] = [];
-  cantidad:number = 1;
+  cantidad:number = 0;
   resultado:string = '';
   ocultarVerificar: boolean;
   Tiempo: number;
@@ -19,9 +20,17 @@ export class OrdenarNumerosComponent implements OnInit {
   clicked2:boolean;
   clicked3:boolean;
   clicked4:boolean;
+  boton1:boolean;
+  boton2:boolean;
+  boton3:boolean;
+  boton4:boolean;
 
-  constructor() { 
+  constructor(private servicio : MiHttpService) { 
     this.nuevoJuego = new JuegoOrdenarNumeros();
+    this.boton1 = true;
+    this.boton2 = true;
+    this.boton3 = true;
+    this.boton4 = true;
   }
 
   iniciar(){
@@ -29,12 +38,13 @@ export class OrdenarNumerosComponent implements OnInit {
     this.nuevoJuego.numeroDos = Math.floor((Math.random() * 100) + 1);
     this.nuevoJuego.numeroTres = Math.floor((Math.random() * 100) + 1);
     this.nuevoJuego.numeroCuatro = Math.floor((Math.random() * 100) + 1);
+    this.setearFalsos();
     this.resultado = '';
-    this.cantidad = 1;
+    this.cantidad = 0;
     this.Tiempo=5;
+    this.orden = [];
     this.repetidor = setInterval(()=>{ 
       this.Tiempo--;
-      console.log("llego", this.Tiempo);
       if(this.Tiempo==0 ) {
         clearInterval(this.repetidor);
         this.verificar();
@@ -49,13 +59,7 @@ export class OrdenarNumerosComponent implements OnInit {
     {
       this.cantidad++;
       this.orden.push(numero);
-      console.log(this.orden);
-      if(this.cantidad == 4)
-      {
-        this.resultado = this.nuevoJuego.verOrden(this.orden);
-        console.log(this.resultado);
-      }
-    }    
+    }
   }
 
   verificar()
@@ -63,13 +67,28 @@ export class OrdenarNumerosComponent implements OnInit {
     if(this.orden.length < 4)
     {
       this.resultado = 'Perdió';
-      console.log(this.resultado);
+      this.servicio.guardarPuntuacionOrdenar(this.nuevoJuego);
     }
     else
     {
       this.resultado = this.nuevoJuego.verOrden(this.orden);
       console.log(this.resultado);
+      clearInterval(this.repetidor);
+      if(this.resultado == "Ganó")
+        this.iniciar();
     }
+  }
+
+  setearFalsos()
+  {
+    this.clicked1 = false;
+    this.clicked2 = false;
+    this.clicked3 = false;
+    this.clicked4 = false;
+    this.boton1 = false;
+    this.boton2 = false;
+    this.boton3 = false;
+    this.boton4 = false;
   }
 
   ngOnInit() {

@@ -1,7 +1,9 @@
-<button [disabled]="clicked1" (click)="click(nuevoJuego.numeroUno); clicked1 = true;">{{nuevoJuego.numeroUno}}</button>
-<button [disabled]="clicked2" (click)="click(nuevoJuego.numeroDos); clicked2 = true;" >{{nuevoJuego.numeroDos}}</button>
-<button [disabled]="clicked3" (click)="click(nuevoJuego.numeroTres); clicked3 = true;">{{nuevoJuego.numeroTres}}</button>
-<button [disabled]="clicked4" (click)="click(nuevoJuego.numeroCuatro); clicked4 = true;">{{nuevoJuego.numeroCuatro}}</button>
+<button [disabled]="clicked1" [hidden]="boton1" (click)="click(nuevoJuego.numeroUno); clicked1 = true;">{{nuevoJuego.numeroUno}}</button>
+<button [disabled]="clicked2" [hidden]="boton2" (click)="click(nuevoJuego.numeroDos); clicked2 = true;" >{{nuevoJuego.numeroDos}}</button>
+<button [disabled]="clicked3" [hidden]="boton3" (click)="click(nuevoJuego.numeroTres); clicked3 = true;">{{nuevoJuego.numeroTres}}</button>
+<button [disabled]="clicked4" [hidden]="boton4" (click)="click(nuevoJuego.numeroCuatro); clicked4 = true;">{{nuevoJuego.numeroCuatro}}</button>
+<br>
+<i class="fa fa-spinner fa-spin"></i>Esperando que ordene los números, tiempo restante: {{Tiempo}}
 <br>
 <br>
 <button (click)="iniciar(); clicked1 = false; clicked2 = false; clicked3 = false; clicked4 = false">Iniciar</button>
