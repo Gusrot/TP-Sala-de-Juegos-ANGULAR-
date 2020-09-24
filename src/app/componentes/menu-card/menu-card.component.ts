@@ -33,10 +33,10 @@ export class MenuCardComponent implements OnInit {
       case 'Memotest':
           this.router.navigate(['/Juegos/Memotest']);
         break;
-      /*case 'AdivinaMasListado':
-          this.router.navigate(['/Juegos/AdivinaMasListado']);
+      case 'Ordenar':
+          this.router.navigate(['/Juegos/Ordenar']);
         break;
-      case 'AgilidadaMasListado':
+      /*case 'AgilidadaMasListado':
           this.router.navigate(['/Juegos/AgilidadaMasListado']);
         break;*/
     }
