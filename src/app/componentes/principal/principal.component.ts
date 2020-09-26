@@ -19,10 +19,13 @@ export class PrincipalComponent implements OnInit {
   logeado : boolean = true;
   usuarioLogeado : boolean = false;
   nombreUsuario : string;
+  msgs:any;
 
   constructor(public auth:MiHttpService, public routes:ActivatedRoute, public router:Router) {  }
 
   ngOnInit() {
+    this.msgs = [];
+    this.msgs.push({severity:'error', summary:'', detail:'Pedido encontrado'});
     this.auth.getAuth().subscribe( user =>{
       if(user)
       { 

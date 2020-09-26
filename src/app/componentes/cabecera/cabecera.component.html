@@ -1,12 +1,20 @@
+<p-toolbar>
+  <div class="ui-toolbar-group-left">
+      <div>
+        <div>
+          <button pButton type="button" icon="pi pi-home" label="Inicio"  routerLink="/MenuPrincipal"></button>    
+          <button pButton type="button" icon="pi pi-info-circle" label="Pedidos a realizar" routerLink="/PedidosARealizar"></button>
+        </div>
+      </div>  
+  </div>
+  <div class="ui-toolbar-group-right">
+      <a href="https://github.com/gustavorotela" target="_blank">en GitHub <i class="fa fa-github"></i></a>
+      <a routerLink="/QuienSoy" >Quien Soy? <i class="fa fa-user"></i></a>
+      <button pButton type="button" icon="pi pi-times" label="Logout" (click)="Logout()" class="ui-button-danger"></button>
+  </div>
+</p-toolbar>
 <div class="panel panel-default">
   <div class="hero-text">
       <h1 style="font-size:50px">Sala de Juegos</h1>
-      <p>Gustavo Rotela</p>
-      <a href="https://github.com/gustavorotela" target="_blank">en GitHub <i class="fa fa-github"></i></a>
-      <a  routerLink="/QuienSoy" >Quien Soy? <i class="fa fa-user"></i></a>
   </div>
-  <ul class="nav navbar-nav navbar-right">
-    <li><a routerLink="/Registro"><span class="glyphicon glyphicon-user"></span>Registrarse</a></li>
-    <li><a  routerLink="/Login"><span class="glyphicon glyphicon-log-in"></span> Ingresar</a></li>
-  </ul>
 </div>

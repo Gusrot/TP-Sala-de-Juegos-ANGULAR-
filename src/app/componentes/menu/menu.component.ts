@@ -8,11 +8,11 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
+  items:any;
+  msgs : any;
+
   constructor(private route: ActivatedRoute,
     private router: Router) { }
-
-  ngOnInit() {
-  }
 
   Juego(tipo: string) {
     switch (tipo) {
@@ -30,5 +30,7 @@ export class MenuComponent implements OnInit {
         break;
     }
   }
+
+  ngOnInit() {}
 
 }

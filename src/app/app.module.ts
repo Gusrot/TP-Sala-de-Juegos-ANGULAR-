@@ -12,6 +12,8 @@ import { HttpModule } from '@angular/http';
 // agrego las clases para utilizar ruteo
 import { RouterModule, Routes } from '@angular/router';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { MiHttpService } from './servicios/mi-http/mi-http.service'; 
 import { PaisesService } from './servicios/paises.service'; 
 
@@ -62,6 +64,7 @@ import { TatetiComponent } from './componentes/tateti/tateti.component';
 import { PiedraPapelTijeraComponent } from './componentes/piedra-papel-tijera/piedra-papel-tijera.component';
 import { OrdenarNumerosComponent } from './componentes/ordenar-numeros/ordenar-numeros.component';
 
+import { VisualesModule } from './modulos/visuales/visuales.module';
 const config = {
   apiKey: "AIzaSyAN9oKSbVCQCZXpLqUgENy3Y5E8-HKW3xI",
   authDomain: "saladejuegos-39f40.firebaseapp.com",
@@ -111,7 +114,9 @@ const config = {
     }),
     //MatSliderModule,
     AngularFireAuthModule,
-    AngularFireModule.initializeApp(config)
+    AngularFireModule.initializeApp(config),
+    VisualesModule,
+    BrowserAnimationsModule
     // NgbModule.forRoot(MiRuteo),
     // importo el ruteo
     // RouterModule.forRoot(MiRuteo)
