@@ -9,6 +9,11 @@ export class CabeceraComponent implements OnInit {
 
   constructor() { }
 
+  Logout()
+  {
+
+  }
+
   ngOnInit() {    
   }
 
