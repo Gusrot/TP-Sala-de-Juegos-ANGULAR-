@@ -91,7 +91,6 @@ export class MiHttpService {
   {
     return new Promise( (resolve , reject) =>
       {
-        console.log('entre');
         this.afAuth.auth.createUserWithEmailAndPassword(usuario.email,usuario.pass)
         .then( userData => resolve(userData), err => reject(err));
       }    

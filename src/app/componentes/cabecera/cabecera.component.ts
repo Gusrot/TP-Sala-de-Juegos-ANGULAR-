@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MiHttpService } from '../../servicios/mi-http/mi-http.service';
 
 @Component({
   selector: 'app-cabecera',
@@ -7,11 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CabeceraComponent implements OnInit {
 
-  constructor() { }
+  constructor(private miServicio:MiHttpService) { }
 
   Logout()
   {
-
+    this.miServicio.logOut();
   }
 
   ngOnInit() {    

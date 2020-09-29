@@ -25,7 +25,9 @@ import {CarouselModule} from 'primeng/carousel';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { TabViewModule } from 'primeng/tabview';
-
+import {FieldsetModule} from 'primeng/fieldset';
+import {PanelModule} from 'primeng/panel';
+import { AccordionModule } from 'primeng/accordion';
 
 @NgModule({
   imports: [
@@ -53,7 +55,10 @@ import { TabViewModule } from 'primeng/tabview';
     BrowserModule,
     BrowserAnimationsModule,
     TabViewModule,
-    CarouselModule
+    CarouselModule,
+    FieldsetModule,
+    PanelModule,
+    AccordionModule
   ],
   exports:[
     CardModule,
@@ -79,7 +84,10 @@ import { TabViewModule } from 'primeng/tabview';
     BrowserModule,
     BrowserAnimationsModule,
     TabViewModule,
-    CarouselModule
+    CarouselModule,
+    FieldsetModule,
+    PanelModule,
+    AccordionModule
   ],  
   declarations: []
 })

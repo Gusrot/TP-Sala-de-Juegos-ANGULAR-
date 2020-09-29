@@ -1,17 +1,16 @@
 <p-toolbar>
   <div class="ui-toolbar-group-left">
+    <div>
       <div>
-        <div>
-          <button pButton type="button" icon="pi pi-home" label="Inicio"  routerLink="/MenuPrincipal"></button>    
-          <button pButton type="button" icon="pi pi-info-circle" label="Pedidos a realizar" routerLink="/PedidosARealizar"></button>
-        </div>
-      </div>  
-  </div>
-  <div class="ui-toolbar-group-right">
-      <a href="https://github.com/gustavorotela" target="_blank">en GitHub <i class="fa fa-github"></i></a>
-      <a routerLink="/QuienSoy" >Quien Soy? <i class="fa fa-user"></i></a>
-      <button pButton type="button" icon="pi pi-times" label="Logout" (click)="Logout()" class="ui-button-danger"></button>
-  </div>
+        <button pButton type="button" icon="pi pi-home" label="Inicio"  routerLink="/Principal"></button>
+      </div>
+    </div>  
+</div>
+<div class="ui-toolbar-group-right">
+  <a href="https://github.com/gustavorotela" target="_blank">en GitHub <i class="fa fa-github"></i></a>
+  <a routerLink="/QuienSoy" >Quien Soy? <i class="fa fa-user"></i></a>
+  <button pButton type="button" icon="pi pi-times" label="Logout" (click)="Logout()" class="ui-button-danger"></button>
+</div>
 </p-toolbar>
 <div class="panel panel-default">
   <div class="hero-text">
