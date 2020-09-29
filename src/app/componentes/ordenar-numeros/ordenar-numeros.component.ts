@@ -24,6 +24,8 @@ export class OrdenarNumerosComponent implements OnInit {
   boton2:boolean;
   boton3:boolean;
   boton4:boolean;
+  intentos:number = 0;
+  juegoTerminado:boolean = false;
 
   constructor(private servicio : MiHttpService) { 
     this.nuevoJuego = new JuegoOrdenarNumeros();
@@ -34,6 +36,8 @@ export class OrdenarNumerosComponent implements OnInit {
   }
 
   iniciar(){
+    this.juegoTerminado=false;
+    this.ocultarVerificar=true;
     this.nuevoJuego.numeroUno = Math.floor((Math.random() * 100) + 1);
     this.nuevoJuego.numeroDos = Math.floor((Math.random() * 100) + 1);
     this.nuevoJuego.numeroTres = Math.floor((Math.random() * 100) + 1);
@@ -48,7 +52,6 @@ export class OrdenarNumerosComponent implements OnInit {
       if(this.Tiempo==0 ) {
         clearInterval(this.repetidor);
         this.verificar();
-        this.ocultarVerificar=true;
         this.Tiempo=5;
       }
       }, 1000);
@@ -66,7 +69,13 @@ export class OrdenarNumerosComponent implements OnInit {
   {
     if(this.orden.length < 4)
     {
+      this.ocultarVerificar = false;
+      this.boton1 = true;
+      this.boton2 = true;
+      this.boton3 = true;
+      this.boton4 = true;
       this.resultado = 'Perdió';
+      this.juegoTerminado = true;
       this.servicio.guardarPuntuacionOrdenar(this.nuevoJuego);
     }
     else
@@ -75,7 +84,10 @@ export class OrdenarNumerosComponent implements OnInit {
       console.log(this.resultado);
       clearInterval(this.repetidor);
       if(this.resultado == "Ganó")
+      {
+        this.intentos++;
         this.iniciar();
+      }
     }
   }
 

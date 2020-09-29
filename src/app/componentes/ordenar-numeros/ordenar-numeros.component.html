@@ -1,9 +1,18 @@
-<button [disabled]="clicked1" [hidden]="boton1" (click)="click(nuevoJuego.numeroUno); clicked1 = true;">{{nuevoJuego.numeroUno}}</button>
-<button [disabled]="clicked2" [hidden]="boton2" (click)="click(nuevoJuego.numeroDos); clicked2 = true;" >{{nuevoJuego.numeroDos}}</button>
-<button [disabled]="clicked3" [hidden]="boton3" (click)="click(nuevoJuego.numeroTres); clicked3 = true;">{{nuevoJuego.numeroTres}}</button>
-<button [disabled]="clicked4" [hidden]="boton4" (click)="click(nuevoJuego.numeroCuatro); clicked4 = true;">{{nuevoJuego.numeroCuatro}}</button>
-<br>
-<i class="fa fa-spinner fa-spin"></i>Esperando que ordene los números, tiempo restante: {{Tiempo}}
-<br>
-<br>
-<button (click)="iniciar(); clicked1 = false; clicked2 = false; clicked3 = false; clicked4 = false">Iniciar</button>
+<app-cabecera></app-cabecera>
+<form name="juego" class="form-Usuario">
+    <ul>
+       <li>
+        <button [disabled]="clicked1" [hidden]="boton1" (click)="click(nuevoJuego.numeroUno); clicked1 = true;">{{nuevoJuego.numeroUno}}</button>
+        <button [disabled]="clicked2" [hidden]="boton2" (click)="click(nuevoJuego.numeroDos); clicked2 = true;" >{{nuevoJuego.numeroDos}}</button>
+        <button [disabled]="clicked3" [hidden]="boton3" (click)="click(nuevoJuego.numeroTres); clicked3 = true;">{{nuevoJuego.numeroTres}}</button>
+        <button [disabled]="clicked4" [hidden]="boton4" (click)="click(nuevoJuego.numeroCuatro); clicked4 = true;">{{nuevoJuego.numeroCuatro}}</button>
+       </li>
+      <li>
+        <h2 [hidden]="ocultarVerificar"><button (click)="iniciar(); clicked1 = false; clicked2 = false; clicked3 = false; clicked4 = false">Iniciar</button></h2>
+      </li>
+      <li>    
+        <h3 [hidden]="!juegoTerminado">llegó a la ronda {{intentos}}</h3>
+        <i [hidden]="juegoTerminado" class="fa fa-spinner fa-spin"></i>Esperando que ordene los números, tiempo restante: {{Tiempo}}
+      </li>
+    </ul>
+</form>
