@@ -7,6 +7,7 @@ export class JuegoOrdenarNumeros extends Juego{
     numeroDos:number;
     numeroTres:number;
     numeroCuatro:number;
+    public resultado : string;
 
     constructor(Gano?:boolean, jugador?:string){
         super("Piedra Papel Tijera", Gano, jugador);

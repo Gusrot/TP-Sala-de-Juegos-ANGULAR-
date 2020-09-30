@@ -8,6 +8,8 @@
         <option value="ppt">Piedra papel o tijera</option>
         <option value="ttt">Ta-te-ti</option>
         <option value="ag">Anagrama</option>
+        <option value="mt">Memotest</option>
+        <option value="on">Ordenar números</option>
       </select>
     </div>
   </div>
@@ -92,4 +94,30 @@
             </tbody>
           </table>
     </div>
+
+    <div *ngIf="filtroJuego == 'mt'">
+      <table class="table table-striped">
+          <thead>
+            <th>Usuario</th>
+            <th>Resultado</th>
+          </thead>
+          <tbody *ngFor="let item of resultadosMemotest">
+            <td>{{item.usuario}}</td>
+            <td>{{item.resultado}}</td>
+          </tbody>
+        </table>
+  </div>
+
+  <div *ngIf="filtroJuego == 'on'">
+    <table class="table table-striped">
+        <thead>
+          <th>Usuario</th>
+          <th>Resultado</th>
+        </thead>
+        <tbody *ngFor="let item of resultadoOrdenar">
+          <td>{{item.usuario}}</td>
+          <td>{{item.resultado}}</td>
+        </tbody>
+      </table>
+</div>
 </div>
