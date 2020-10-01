@@ -13,6 +13,7 @@ export class CabeceraComponent implements OnInit {
   Logout()
   {
     this.miServicio.logOut();
+    
   }
 
   ngOnInit() {    

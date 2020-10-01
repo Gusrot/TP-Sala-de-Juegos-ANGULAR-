@@ -5,12 +5,10 @@ export class JuegoAgilidad extends Juego {
     public primerNumero:number;
     public operador:string;
     public segundoNumero:number;
-    public gano:Boolean;
+    public gano:string;
 
     public numeroUno : number;
     public numeroDos : number;
-    public cantCuentas : number = 0;
-    public cantAciertos : number = 0;
     public resultado : number;
     public cuenta : any;
 

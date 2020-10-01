@@ -15,15 +15,19 @@ export class AdivinaElNumeroComponent implements OnInit {
   Mensajes:string;
   contador:number;
   ocultarVerificar:boolean;
+  nombreJugador:string;
+  resultado:boolean;
  
   constructor(public auth : MiHttpService) { 
     this.nuevoJuego = new JuegoAdivina();
     console.info("numero Secreto:",this.nuevoJuego.numeroSecreto);  
     this.ocultarVerificar=false;
+    this.resultado = false;
   }
   generarnumero() {
     this.nuevoJuego.generarnumero();
     this.contador=0;
+    this.resultado = false;
   }
   verificar()
   {
@@ -33,8 +37,11 @@ export class AdivinaElNumeroComponent implements OnInit {
     this.nuevoJuego.resultado = this.nuevoJuego.verificar();
     console.log(this.nuevoJuego.resultado)
     if (this.nuevoJuego.resultado == "Ganó"){
-      
+      this.resultado = true;
+      this.ocultarVerificar = true;
       this.enviarJuego.emit(this.nuevoJuego);
+      this.nuevoJuego.numeroSecreto = 0;
+      this.nuevoJuego.usuario = this.nombreJugador;
       this.MostarMensaje("Sos un Genio!!!",this.nuevoJuego.resultado);
       this.auth.guardarPuntuacionAdivina(this.nuevoJuego);
     }
@@ -70,10 +77,12 @@ export class AdivinaElNumeroComponent implements OnInit {
       }
       else
       {
+        this.resultado = true;
         this.MostarMensaje("Se te acabaron los 10 intentos, ¡perdiste!",this.nuevoJuego.resultado);
         this.ocultarVerificar = true;
+        this.nuevoJuego.usuario = this.nombreJugador;
+        this.nuevoJuego.numeroSecreto = 0;
         this.auth.guardarPuntuacionAdivina(this.nuevoJuego);
-        (<HTMLInputElement>document.getElementById("numeroIngresado")).disabled = false;
       }
     }
     console.info("numero Secreto:",this.nuevoJuego.gano);  
@@ -97,6 +106,11 @@ export class AdivinaElNumeroComponent implements OnInit {
   
    }  
   ngOnInit() {
+    this.auth.getAuth().subscribe( user =>{
+      let mail = user.email;      
+      let splitted = mail.split("@",1);
+      this.nombreJugador = splitted[0];
+    });
   }
 
 }

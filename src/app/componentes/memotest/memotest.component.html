@@ -27,3 +27,13 @@
 <br><button class="btn btn-primary" (click)="Jugar()">Jugar</button>
 </form>
 </div>
+<div *ngIf="vasBien == true && this.nuevoJuego.cantidad > 0">
+  <div class="alert alert-success" role="alert">
+    Vas bien, ronda: {{nivel}}
+  </div>
+</div>
+<div *ngIf="vasBien == false">
+  <div class="alert alert-danger" role="alert">
+    Perdiste.
+  </div>
+</div>

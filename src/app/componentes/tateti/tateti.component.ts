@@ -26,14 +26,7 @@ export class TatetiComponent implements OnInit {
     this.nuevoJuego = new JuegoTateti();
   }
 
-  ngOnInit() {
-    /*this.servicio.getAuth().subscribe( user =>{
-      let mail = user.email;      
-      let splitted = mail.split("@",1);
-      this.nuevoJuego.usuario = splitted[0];
-      this.nombreJugador = splitted[0];
-    });*/
-  }
+  
 
   eleccionSigno(signo) {
     this.botonesEleccion = true;
@@ -77,11 +70,7 @@ export class TatetiComponent implements OnInit {
       (<HTMLInputElement>document.getElementById("botonOcho")).disabled = true;
       (<HTMLInputElement>document.getElementById("botonNueve")).disabled = true;
       this.terminoJuego = false;
-      /*this.servicio.getAuth().subscribe( user =>{
-        let mail = user.email;      
-        let splitted = mail.split("@",1);
-        this.nuevoJuego.usuario = splitted[0];
-      });*/
+      this.nuevoJuego.usuario = this.nombreJugador;
       this.servicio.guardarPuntuaciónTateti(this.nuevoJuego);
     }
     else
@@ -114,11 +103,7 @@ export class TatetiComponent implements OnInit {
           (<HTMLInputElement>document.getElementById("botonOcho")).disabled = true;
           (<HTMLInputElement>document.getElementById("botonNueve")).disabled = true;
           this.terminoJuego = false;
-          /*this.servicio.getAuth().subscribe( user =>{
-            let mail = user.email;      
-            let splitted = mail.split("@",1);
-            this.nuevoJuego.usuario = splitted[0];
-          });*/
+          this.nuevoJuego.usuario = this.nombreJugador;
           this.servicio.guardarPuntuaciónTateti(this.nuevoJuego);
       }  
     }
@@ -151,11 +136,15 @@ export class TatetiComponent implements OnInit {
     this.botonesJuego = true;
     this.botonesEleccion = false;
     this.nuevoJuego = new JuegoTateti();
-    /*this.servicio.getAuth().subscribe( user =>{
+
+  }
+
+  ngOnInit() {
+    this.servicio.getAuth().subscribe( user =>{
       let mail = user.email;      
       let splitted = mail.split("@",1);
       this.nuevoJuego.usuario = splitted[0];
-    });*/
-
+      this.nombreJugador = splitted[0];
+    });
   }
 }

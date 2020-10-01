@@ -18,6 +18,7 @@ export class AgilidadAritmeticaComponent implements OnInit {
   ocultarVerificar: boolean;
   Tiempo: number;
   repetidor:any;
+  nombreJugador:string;
 
   private subscription: Subscription;
   
@@ -27,6 +28,7 @@ export class AgilidadAritmeticaComponent implements OnInit {
     this.nuevoJuego = new JuegoAgilidad();
     console.info("Inicio agilidad");  
   }
+
   NuevoJuego() {
     let operadores = "+-*/";
     this.nuevoJuego.primerNumero = Math.floor(Math.random() * 10) + 1;
@@ -65,9 +67,9 @@ export class AgilidadAritmeticaComponent implements OnInit {
         resultado = this.nuevoJuego.primerNumero + this.nuevoJuego.segundoNumero;
         console.log(resultado)
         if(resultado == this.nuevoJuego.numeroIngresado) {
-          this.nuevoJuego.gano = true;
+          this.nuevoJuego.gano = "Ganó";
         } else {
-          this.nuevoJuego.gano = false;
+          this.nuevoJuego.gano = "Perdió";
         }
         break;
       }
@@ -75,9 +77,9 @@ export class AgilidadAritmeticaComponent implements OnInit {
         resultado = this.nuevoJuego.primerNumero - this.nuevoJuego.segundoNumero;
         console.log(resultado)
         if(resultado == this.nuevoJuego.numeroIngresado) {
-          this.nuevoJuego.gano = true;
+          this.nuevoJuego.gano = "Ganó";
         } else {
-          this.nuevoJuego.gano = false;
+          this.nuevoJuego.gano = "Perdió";
         }
         break;
       }
@@ -85,9 +87,9 @@ export class AgilidadAritmeticaComponent implements OnInit {
         resultado = this.nuevoJuego.primerNumero * this.nuevoJuego.segundoNumero;
         console.log(resultado)
         if(resultado == this.nuevoJuego.numeroIngresado) {
-          this.nuevoJuego.gano = true;
+          this.nuevoJuego.gano = "Ganó";
         } else {
-          this.nuevoJuego.gano = false;
+          this.nuevoJuego.gano = "Perdió";
         }
         break;
       }
@@ -95,17 +97,24 @@ export class AgilidadAritmeticaComponent implements OnInit {
         resultado = this.nuevoJuego.primerNumero / this.nuevoJuego.segundoNumero;
         console.log(resultado)
         if(resultado == this.nuevoJuego.numeroIngresado) {
-          this.nuevoJuego.gano = true;
+          this.nuevoJuego.gano = "Ganó";
         } else {
-          this.nuevoJuego.gano = false;
+          this.nuevoJuego.gano = "Perdió";
         }
         break;
       }
     }
+    this.nuevoJuego.usuario = this.nombreJugador;
     this.servicio.guardarPuntuaciónAgilidad(this.nuevoJuego);
     this.ocultarVerificar = true;
     clearInterval(this.repetidor);
   }
+
   ngOnInit() {
+    this.servicio.getAuth().subscribe( user =>{
+      let mail = user.email;      
+      let splitted = mail.split("@",1);
+      this.nombreJugador = splitted[0];
+    });
   } 
 }

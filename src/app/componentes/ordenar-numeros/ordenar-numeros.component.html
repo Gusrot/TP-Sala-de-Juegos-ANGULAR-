@@ -2,17 +2,17 @@
 <form name="juego" class="form-Usuario">
     <ul>
        <li>
-        <button [disabled]="clicked1" [hidden]="boton1" (click)="click(nuevoJuego.numeroUno); clicked1 = true;">{{nuevoJuego.numeroUno}}</button>
-        <button [disabled]="clicked2" [hidden]="boton2" (click)="click(nuevoJuego.numeroDos); clicked2 = true;" >{{nuevoJuego.numeroDos}}</button>
-        <button [disabled]="clicked3" [hidden]="boton3" (click)="click(nuevoJuego.numeroTres); clicked3 = true;">{{nuevoJuego.numeroTres}}</button>
-        <button [disabled]="clicked4" [hidden]="boton4" (click)="click(nuevoJuego.numeroCuatro); clicked4 = true;">{{nuevoJuego.numeroCuatro}}</button>
+        <button [disabled]="clicked1" pButton pRipple type="button" class="p-button-raised p-button-info" styleClass="p-button-sm" [hidden]="boton1" (click)="click(nuevoJuego.numeroUno); clicked1 = true;">{{nuevoJuego.numeroUno}}</button> 
+        <button [disabled]="clicked2" pButton pRipple type="button" class="p-button-raised p-button-info" styleClass="p-button-sm" [hidden]="boton2" (click)="click(nuevoJuego.numeroDos); clicked2 = true;">{{nuevoJuego.numeroDos}}</button> 
+        <button [disabled]="clicked3" pButton pRipple type="button" class="p-button-raised p-button-info" styleClass="p-button-sm" [hidden]="boton3" (click)="click(nuevoJuego.numeroTres); clicked3 = true;">{{nuevoJuego.numeroTres}}</button> 
+        <button [disabled]="clicked4" pButton pRipple type="button" class="p-button-raised p-button-info" styleClass="p-button-sm" [hidden]="boton4" (click)="click(nuevoJuego.numeroCuatro); clicked4 = true;">{{nuevoJuego.numeroCuatro}}</button>
        </li>
       <li>
         <h2 [hidden]="ocultarVerificar"><button (click)="iniciar(); clicked1 = false; clicked2 = false; clicked3 = false; clicked4 = false">Iniciar</button></h2>
       </li>
       <li>    
         <h3 [hidden]="!juegoTerminado">llegó a la ronda {{intentos}}</h3>
-        <i [hidden]="juegoTerminado" class="fa fa-spinner fa-spin"></i>Esperando que ordene los números, tiempo restante: {{Tiempo}}
+        <div [hidden]="juegoTerminado"><i  class="fa fa-spinner fa-spin"></i>Esperando que ordene los números, tiempo restante: {{Tiempo}}</div>
       </li>
     </ul>
 </form>

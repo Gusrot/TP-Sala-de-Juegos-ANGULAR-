@@ -70,6 +70,7 @@ import 'rxjs/add/operator/toPromise';
 import { Http, Response } from '@angular/http';
 import { JuegoMemotest } from '../../clases/juego-memotest';
 import { JuegoOrdenarNumeros } from '../../clases/juego-ordenar-numeros';
+//import { userInfo } from 'os';
 
 @Injectable()
 export class MiHttpService {
@@ -93,6 +94,9 @@ export class MiHttpService {
       {
         this.afAuth.auth.createUserWithEmailAndPassword(usuario.email,usuario.pass)
         .then( userData => resolve(userData), err => reject(err));
+        let mail = usuario.email;      
+        let splitted = mail.split("@",1);
+        this.guardarUsuario(splitted[0]);
       }    
     );
   }
@@ -199,8 +203,21 @@ export class MiHttpService {
 
   guardarPuntuacionOrdenar(juegoOrdenar:JuegoOrdenarNumeros)
   {
-    const resultadosMemotest = this.afDB.list("/resultadoOrdenar/");
-    resultadosMemotest.push(juegoOrdenar);
+    const resultadosOredenar = this.afDB.list("/resultadoOrdenar/");
+    resultadosOredenar.push(juegoOrdenar);
+  }
+
+  traerUsuarios()
+  {
+    this.respuestasAFL = this.afDB.list("/usuarios");
+    this.respuestasObservable = this.respuestasAFL.valueChanges();
+    return this.respuestasObservable;
+  }
+
+  guardarUsuario(usuario)
+  {
+    const resultadosUsuarios = this.afDB.list("/usuarios");
+    resultadosUsuarios.push(usuario);
   }
 
   public httpGetP ( url: string)

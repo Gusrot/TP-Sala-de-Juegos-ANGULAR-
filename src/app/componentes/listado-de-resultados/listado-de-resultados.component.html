@@ -37,7 +37,7 @@
             </thead>
             <tbody *ngFor="let item of resultadosAgilidad">
               <td>{{item.usuario}}</td>
-              <td>{{item.cantAciertos}} / 5</td>               
+              <td>{{item.gano}}</td>               
             </tbody>
           </table>
     </div>
@@ -114,7 +114,7 @@
           <th>Usuario</th>
           <th>Resultado</th>
         </thead>
-        <tbody *ngFor="let item of resultadoOrdenar">
+        <tbody *ngFor="let item of resultadosOrdenar">
           <td>{{item.usuario}}</td>
           <td>{{item.resultado}}</td>
         </tbody>

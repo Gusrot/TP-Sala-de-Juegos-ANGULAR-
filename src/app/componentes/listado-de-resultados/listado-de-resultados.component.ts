@@ -53,13 +53,7 @@ export class ListadoDeResultadosComponent implements OnInit {
 
       for (let i = 0; i < data.length; i++) {
         var unResultado : JuegoAgilidad = new JuegoAgilidad();
-        unResultado.cantAciertos = data[i].cantAciertos;
-        unResultado.cantCuentas = data[i].cantCuentas;
-        
         unResultado.gano = data[i].gano;
-        unResultado.juego = data[i].juego;
-        unResultado.numeroIngresado = data[i].numeroIngresado;
-        unResultado.resultado = data[i].resultado;
         unResultado.usuario = data[i].usuario;
         this.resultadosAgilidad.push(unResultado);
       }

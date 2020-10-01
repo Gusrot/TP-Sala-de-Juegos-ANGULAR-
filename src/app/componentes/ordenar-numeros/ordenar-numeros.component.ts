@@ -25,7 +25,8 @@ export class OrdenarNumerosComponent implements OnInit {
   boton3:boolean;
   boton4:boolean;
   intentos:number = 0;
-  juegoTerminado:boolean = false;
+  juegoTerminado:boolean;
+  nombreJugador : string;
 
   constructor(private servicio : MiHttpService) { 
     this.nuevoJuego = new JuegoOrdenarNumeros();
@@ -33,6 +34,7 @@ export class OrdenarNumerosComponent implements OnInit {
     this.boton2 = true;
     this.boton3 = true;
     this.boton4 = true;
+    this.juegoTerminado = false;
   }
 
   iniciar(){
@@ -74,8 +76,9 @@ export class OrdenarNumerosComponent implements OnInit {
       this.boton2 = true;
       this.boton3 = true;
       this.boton4 = true;
-      this.resultado = 'Perdió';
       this.juegoTerminado = true;
+      this.nuevoJuego.resultado = this.intentos.toString();
+      this.nuevoJuego.usuario = this.nombreJugador;
       this.servicio.guardarPuntuacionOrdenar(this.nuevoJuego);
     }
     else
@@ -87,6 +90,18 @@ export class OrdenarNumerosComponent implements OnInit {
       {
         this.intentos++;
         this.iniciar();
+      }
+      else
+      {
+        this.ocultarVerificar = false;
+        this.boton1 = true;
+        this.boton2 = true;
+        this.boton3 = true;
+        this.boton4 = true;
+        this.juegoTerminado = true;
+        this.nuevoJuego.resultado = this.intentos.toString();
+        this.nuevoJuego.usuario = this.nombreJugador;
+        this.servicio.guardarPuntuacionOrdenar(this.nuevoJuego);
       }
     }
   }
@@ -104,6 +119,11 @@ export class OrdenarNumerosComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.servicio.getAuth().subscribe( user =>{
+      let mail = user.email;      
+      let splitted = mail.split("@",1);
+      this.nombreJugador = splitted[0];
+    });
   }
 
 }

@@ -18,6 +18,9 @@ export class MemotestComponent implements OnInit {
   amarillo:boolean=false;
   i:number;
   nombreJugador:string;
+  Mensajes:string;
+  vasBien:boolean;
+  nivel:number = 0;
 
   constructor(public auth : MiHttpService) { 
     this.nuevoJuego = new JuegoMemotest();
@@ -26,6 +29,8 @@ export class MemotestComponent implements OnInit {
 
   Jugar()
   {
+    if(this.nuevoJuego.cantidad == 0)
+      this.nivel = 0;
     this.numeros.push(Math.floor(Math.random() * 4));
     this.i = 0;
     console.log(this.numeros.length)
@@ -76,19 +81,20 @@ export class MemotestComponent implements OnInit {
     }
     if(this.numeros[this.intento] == boton)
     {
-      console.log('vas bien');
       this.intento++;
       console.log(this.intento);
       console.log(this.numeros.length);
+      this.vasBien = true;
       if(this.intento == this.numeros.length){
+        this.nivel++;
         this.intento = 0;
         this.Jugar();
       }
     }
     else
     {
-      console.log('perdiste');
       this.nuevoJuego.cantidad--;
+      this.vasBien = false;
       this.guardar();
       this.Reiniciar();
     }
@@ -148,12 +154,11 @@ export class MemotestComponent implements OnInit {
   }
 
   ngOnInit() {
-    /*this.auth.getAuth().subscribe( user =>{
+    this.auth.getAuth().subscribe( user =>{
       let mail = user.email;      
       let splitted = mail.split("@",1);
       this.nombreJugador = splitted[0];
     });
-    (<HTMLInputElement>document.getElementById("palabraIngresada")).disabled = true;*/
   }
 
 }
